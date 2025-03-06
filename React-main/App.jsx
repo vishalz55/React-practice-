@@ -1,24 +1,22 @@
 
 import './App.css'
-// import Propsone from './Propsone.jsx'
-// import Arrowtwo from './arrowtwo.jsx'  
-import Statesixteen from   './Statesixteen.jsx'
+import Title from './Title';
+import './ProductTab';
+import './MsgBox';
+import './ProductTab';
+
 
 function App() {
-  
+
 
   return (
     <>
-     {/* <Propsone>{names} = "Vishal"</Propsone>   wrong way tab madhe pass krto smjl ka  */}
-     {/* <Propsone names ="vishal"   age = "20"></Propsone>
-     <Propsone names = "Rahul"  age = "25"></Propsone>
-     <Propsone names ="kunal" age = "35"></Propsone>
-     <Arrowtwo></Arrowtwo> */}
-    <Statesixteen></Statesixteen>
-
- 
+    <MsgBox userName = "shradhan" textColor = "yellow"/>
+    <MsgBox userName = "vishal" textColor = "black"/> 
+   <ProductTab></ProductTab>
+       
     </>
-  )
+  );
 }
 
 export default App
