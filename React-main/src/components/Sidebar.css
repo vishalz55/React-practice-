@@ -1,0 +1,79 @@
+.sidebar{
+   position: fixed;
+   left:0;
+   top:0;
+   height: 100vh;
+   width: 220px;
+   background: #1e1e1e;
+   color: white;
+   display: flex;
+   flex-direction: column;
+   padding: 20px;
+  font-family: Arial, sans-serif;
+    transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Sidebar visible */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Sidebar hidden */
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+
+/* Hamburger button */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #1e1e1e;
+  color: white;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 1100;
+}
+
+
+.sidebar-header{
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.sidebar-header .icon {
+  margin-right: 10px;
+}
+
+.sidebar-menu{
+     list-style: style none;
+      padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+       display: flex;
+       align-items: center;
+         padding: 12px 10px;
+  margin: 8px 0;
+     cursor: pointer;
+       border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.sidebar-menu li:hover {
+  background: #333;
+}
+
+
+.sidebar-menu .icon {
+  margin-right: 12px;
+  font-size: 18px;
+}
