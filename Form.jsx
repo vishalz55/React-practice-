@@ -1,52 +1,72 @@
-// forms cha abhyas krtana react madhe thod vegl krav lagte smjl ak 
-// input submit button he vgle astata 
-// te preserve krtata tyachi na internal satate 
+import React from 'react'
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
-//internal state mnje react chi srte nahi tr 
-//yachy kde na swtach internal information data asto 
-//ani kahide fault behgaviours pn yetat sobt 
-//forms sumit vachy agodarch infro mation gyab houn jate smjl ka 
-//tyalach from chy element ch default behaviopur as bolave 
-//ashani kay hote data chi acces form chy aplylan kadhi bhetel jevha form ha compoelete submit zala thavach smjl ak 
+function Form() {
 
-//rreact la control kryach mg ty case madhe yeteat controlled components a
-//react chi state single source of truth aste 
-//apn tag la n vicharta react chy element la ti ghost vicahrto br ka smjl 
+   let [store,setStore] = useState("")
+   let[display,setDisplay] = useState([{text : "sample text",id:uuidv4()}])
 
-
-import { useState } from "react";
-
-export default function Form() {
-
-
-    let [fullName,setFullName] = useState("");
+   let handleClick = (e)=>{
+        e.preventDefault();
+        setDisplay([...display,{text : store,id:uuidv4()}])
+        setStore("")
+   }
+   
+//    let handledeleteonClick = (id)=>{
+//     //  change kashy ahe bhava dipslnay na so bhava yat na tu kay kr bhava diplsya set cha use krav sjl ka 
+   
+//    }
 
 
-//at amla connect kruyach fomrm la sate varible sobt smjlk ka
-//are bhav he apn agodarch kelo smjl ka to do madhe kay krto input madhe ji value ahe na tila  eaual krto na state varible sobt smjl ak 
-//input madhe eveent asto onchange smjl ak 
-
-
-  let handleNameChange = (event) =>{
-    setFullName(event.target.value);
+ let  handledeleteClick = (id)=>{
+       setDisplay(display.filter((items)=>items.id!==id))
+ }
+  
+ let handleDeleteAll = () => {
+    setDisplay([])   // list रिकामी ani list jr rikami asel tr madhe kahi rahnar ch nahi smjl ka 
   }
 
+  let handleUppercaseAll = () => {
+    setDisplay(display.map((items) => {
+      return { ...items, text: items.text.toUpperCase() }
+    }))
+  }
+
+  let handleUppercaseOne = (id) => {
+      setDisplay(display.map((items) =>
+         items.id === id ? { ...items, text: items.text.toUpperCase() } : items
+      ))
+   }
 
   return (
-    <>
-     <div>
-      <h1>Enter data </h1>
-      <form>
+    <div>
+      <input
+      placeholder='Enter text'
+      type = "text"
+      onChange = {(e)=>setStore(e.target.value)}
+      value = {store}
+      ></input>
+      <button onClick = {handleClick}>Click me</button>
 
-       <input placeholder = "Enter your name" type = "text" value = {fullName} onChange = {handleNameChange}></input>   
-       {/* input madhe ji pn value yeil na ti satte varible ci value yeil smjl ak  */}
-      <br></br>
-       <button>Submit</button>
+      <button onClick={handleDeleteAll}>
+        Delete All
+      </button> 
 
-      </form>
-      </div>
-    </>
+      <button onClick = {handleUppercaseAll}>uppercaseAll</button>
+
+     <ul>{display.map((items,index)=>(
+        
+        <li key ={items.id}>
+        <span>{items.text}</span>
+        <button onClick = {()=>handledeleteClick(items.id)}>Delete</button>
+        <button onClick={() => handleUppercaseOne(items.id)}>Uppercase</button>
+        </li>
+        
+        ))}</ul>
+     
+    </div>
   )
 }
 
-
+export default Form
