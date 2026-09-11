@@ -1,14 +1,15 @@
 
-
 import './App.css'
-import Formtwo from './Formtwo.jsx'
-
-
+import React from 'react'
+import Form from './Form'
 
 function App() {
   return (
-    <div className="App">
-      <Formtwo></Formtwo>
+    <div>
+    <h1>To do list</h1>
+    <Form></Form>
+    <hr></hr>
+      
     </div>
   )
 }
